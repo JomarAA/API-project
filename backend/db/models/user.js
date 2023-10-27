@@ -9,9 +9,26 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-    }
+    }2
   }
   User.init({
+    firstname: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    lastname: {
+      type:DataTypes.STRING,
+      allowNull: false
+    },
+    email: {
+      type:DataTypes.STRING,
+      allowNull:false,
+      unique:true,
+      validate: {
+        len: [3, 256],
+        isEmail: true
+      }
+    },
     username: {
       type:DataTypes.STRING,
       allowNull: false,
@@ -23,15 +40,6 @@ module.exports = (sequelize, DataTypes) => {
             throw new Error("Cannot be an email.")
           }
         }
-      }
-    },
-    email: {
-      type:DataTypes.STRING,
-      allowNull:false,
-      unique:true,
-      validate: {
-        len: [3, 256],
-        isEmail: true
       }
     },
     hashedPassword: {
