@@ -17,6 +17,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      spotId: {
+        type: Sequelize.INTEGER,
+        references: {model: 'Spots'}
+      },
       url: {
         type: Sequelize.STRING
       },
@@ -31,6 +35,6 @@ module.exports = {
     }, options);
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('ReviewImages', options);
+    await queryInterface.dropTable(options);
   }
 };
