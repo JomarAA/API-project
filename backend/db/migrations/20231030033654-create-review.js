@@ -18,10 +18,12 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       spotId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {model: 'Spots'}
       },
       userId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {model: 'Users'}
       },
       review: {
         type: Sequelize.STRING
@@ -37,9 +39,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
-    },options);
+    });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Reviews', options);
+    await queryInterface.dropTable(options);
   }
 };
