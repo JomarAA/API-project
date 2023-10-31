@@ -13,12 +13,6 @@ module.exports = {
       }
     });
 
-    await queryInterface.addColumn('Spots', 'ownerId', {
-      type: Sequelize.INTEGER,
-      references: {
-        model: 'Users'
-      }
-    });
 
     await queryInterface.addColumn('ReviewImages', 'reviewId', {
       type: Sequelize.INTEGER,
