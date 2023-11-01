@@ -22,18 +22,23 @@ module.exports = {
     */
    await ReviewImage.bulkCreate([
     {
+      reviewId: 1,
       url: '../images/download (1).jpeg'
     },
     {
+      reviewId: 2,
       url: '../images/download (2).jpeg'
     },
     {
+      reviewId: 3,
       url: '../images/download (3).jpeg'
     },
     {
+      reviewId: 4,
       url: '../images/download.jpeg'
     },
     {
+      reviewId: 5,
       url: '../images/luxury-vacation-rental-sites-o3.webp'
     }
    ])

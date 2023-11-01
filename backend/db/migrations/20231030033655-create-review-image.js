@@ -19,14 +19,10 @@ module.exports = {
       },
       reviewId: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
           model: 'Reviews'
         },
-        onDelete: 'CASCADE'
-      },
-      spotId: {
-        type: Sequelize.INTEGER,
-        references: {model: 'Spots'},
         onDelete: 'CASCADE'
       },
       url: {
