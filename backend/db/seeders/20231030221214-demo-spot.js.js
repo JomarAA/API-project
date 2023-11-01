@@ -25,7 +25,7 @@ module.exports = {
       state: 'California',
       country: 'United States of America',
       lat: 37.35,
-      lng:121.95,
+      lng:35.95,
       name: 'Cozy Place',
       description: 'Small apartment in city',
       price: 123.00
