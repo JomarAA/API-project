@@ -17,6 +17,12 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      reviewId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Reviews'
+        }
+      },
       spotId: {
         type: Sequelize.INTEGER,
         references: {model: 'Spots'}

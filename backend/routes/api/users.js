@@ -35,6 +35,20 @@ router.post(
     const hashedPassword = bcrypt.hashSync(password);
     const user = await User.create({firstName, lastName, email, username, hashedPassword });
 
+    let errors = {};
+
+    if (!email) errors.email = "Invalid email";
+    if (!username) errors.username = "Username is required";
+    if (!firstName) errors.firstName = "First Name is required";
+    if (!lastName) errors.lastName = "Last Name is required";
+
+    if (Object.keys(errors).length > 0) {
+      return res.status(400).json({
+          message: 'Bad Request',
+          errors: errors
+      })
+    }
+
     const safeUser = {
       id: user.id,
       firstname: user.firstName,
