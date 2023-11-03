@@ -159,7 +159,7 @@ router.get("/current", async (req, res) => {
     }
     const reviews = await Review.findAll({
       where: {
-        soitId: spot.id
+        spotId: spot.id
       },
       attributes: ['stars']
     });
