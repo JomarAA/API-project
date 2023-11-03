@@ -112,14 +112,22 @@ router.get("/", async (req, res) => {
       spot.dataValues.previewImage = previewImage.dataValues.url;
     }
 
-  const reviews = await Review.findAll({
-    where: {
-      spotId: parseInt(spot.id)
-    },
-    attributes: ['stars']
-  });
-};
+    const reviews = await Review.findAll({
+      where: {
+        spotId: spot.id
+      },
+      attributes: ['stars']
+    });
 
+    let sum = 0;
+    reviews.forEach(review => {
+      sum += review.stars;
+    });
+    const avgRating = reviews.length > 0 ? sum / reviews.length : 0;
+
+    spot.dataValues.avgRating = avgRating;
+    spot.dataValues.numReviews = reviews.length;
+  }
 
   res.json({
     Spots: spots,
@@ -131,15 +139,15 @@ router.get("/", async (req, res) => {
 //Get all Spots of Current User
 router.get("/current", async (req, res) => {
   const { user } = req;
-  const ownerId = req.user.id;
 
   const spots = await Spot.findAll({
     where: {
       ownerId: user.id,
     },
   });
+
   for (let spot of spots) {
-    previewImage = await SpotImage.findOne({
+    let previewImage = await SpotImage.findOne({
       where: {
         spotId: spot.id,
         preview: true,
@@ -149,6 +157,21 @@ router.get("/current", async (req, res) => {
     if (previewImage) {
       spot.dataValues.previewImage = previewImage.dataValues.url;
     }
+    const reviews = await Review.findAll({
+      where: {
+        soitId: spot.id
+      },
+      attributes: ['stars']
+    });
+
+    let sum = 0;
+    reviews.forEach(review => {
+      sum += review.stars;
+    });
+    const avgRating = reviews.length > 0 ? sum / reviews.length : 0;
+
+    spot.dataValues.avgRating = avgRating;
+    spot.dataValues.numReviews = reviews.length;
   }
 
   res.json(spots);
@@ -177,6 +200,22 @@ router.get("/:spotId", async (req, res) => {
       message: "Spot couldn't be found",
     });
   }
+  const reviews = await Review.findAll({
+    where: {
+      spotId: spot.id
+    },
+    attributes: ['stars']
+  });
+
+  let sum = 0;
+  reviews.forEach(review => {
+    sum += review.stars;
+  });
+  const avgRating = reviews.length > 0 ? sum / reviews.length : 0;
+
+  spot.dataValues.avgRating = avgRating;
+  spot.dataValues.numReviews = reviews.length;
+
 
   res.json(spot);
 });
