@@ -18,10 +18,10 @@ const router = express.Router();
 
 //Delete a review image
 router.delete('/:imageId', requireAuth, async (req, res) => {
-    const imageId = req.params.imageId;
+    const {imageId} = req.params;
     const reviewImage = await ReviewImage.findByPk(imageId, {
       include: {
-        model: Spot,
+        model: Review,
         attributes: ['userId']
       }
     });
@@ -31,7 +31,7 @@ router.delete('/:imageId', requireAuth, async (req, res) => {
       });
     };
 
-  if (reviewImage.Review.userId !== req.user.dataValues.id) {
+  if (reviewImage.Review.dataValues.userId !== req.user.dataValues.id) {
      return res.status(403).json({
        message: "Image must belong to current user",
       });
