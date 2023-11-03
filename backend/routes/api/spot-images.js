@@ -31,7 +31,7 @@ router.delete('/:imageId', requireAuth, async (req, res) => {
     });
   };
 
-if (spotImage.userId !== req.user.dataValues.id) {
+if (spotImage.Spot.dataValues.ownerId !== req.user.dataValues.id) {
    return res.status(403).json({
      message: "Image must belong to current user",
     });

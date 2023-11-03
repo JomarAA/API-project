@@ -517,7 +517,9 @@ router.get('/:spotId/bookings', requireAuth, async(req, res) => {
     bookings = await Booking.findAll({
       where: {spotId},
       model: User,
+      include: {
       attributes: ['id', 'firstName', 'lastName']
+      }
     })
   }
   return res.json({Bookings: bookings})

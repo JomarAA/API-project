@@ -88,10 +88,20 @@ router.put("/:bookingId", requireAuth, async (req, res) => {
     });
   }
 
+
   if (booking.dataValues.userId !== req.user.dataValues.id) {
     return res.status(403).json({
-      message: "Booking can only be deleted by owner of booking",
+      message: "Booking can only be edited by owner of booking",
     });
+  }
+
+  if (new Date(startDate) >= new Date(endDate)) {
+    return res.status(400).json({
+      message: 'Bad Request',
+      errors: {
+        endDate: "endDate cannot be on or before startDate"
+      }
+    })
   }
 
   const bookingEnd = new Date(booking.dataValues.endDate);
