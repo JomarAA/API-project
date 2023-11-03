@@ -122,7 +122,12 @@ router.put('/:reviewId', requireAuth, async(req, res) => {
     const {reviewId} = req.params;
     const {review, stars} = req.body;
 
-    const thisReview = await Review.findByPk(reviewId)
+    const thisReview = await Review.findOne({
+      where: {
+        userId: req.user.dataValues.id,
+        id: reviewId
+      }
+     })
 
     if (thisReview === null) {
         return res.status(404).json({
@@ -130,7 +135,7 @@ router.put('/:reviewId', requireAuth, async(req, res) => {
         });
       };
 
-      if (thisReview.ownerId !== req.user.dataValues.id) {
+      if (thisReview.userId !== req.user.dataValues.id) {
         return res.status(403).json({
           message: "Review can only be edited by Owner",
         });
