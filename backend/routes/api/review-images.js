@@ -41,7 +41,7 @@ router.delete('/:imageId', requireAuth, async (req, res) => {
       id: reviewImage.dataValues.id
     }
   })
-  return res.json({message: "Review Image couldn't be found"})
+  return res.json({message: "Successfully deleted"})
   })
 
 

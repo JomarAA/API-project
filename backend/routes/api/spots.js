@@ -54,9 +54,12 @@ router.post("/", requireAuth, async (req, res) => {
 //Get all Spots
 router.get("/", async (req, res) => {
 
-  const { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice} = req.query;
+  let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice} = req.query;
 
   let errors = {};
+
+  page = parseInt(page, 10) || 1;
+  size = parseInt(size, 10) || 20;
 
   if (page <= 0) errors.page = "Page must be greater than or equal to 1";
   if (size <= 0) errors.size = "Size must be greater than or equal to 1";
@@ -74,31 +77,45 @@ router.get("/", async (req, res) => {
     });
   }
 
-  const query = {
-    where: {},
-    limit: Number(size) || 20,
-    offset: ((Number(page) || 1) - 1) * (Number(size) || 20),
-    lng: {
-      [Op.between]: [
-        minLng !== null ? minLng: -150,
-        maxLng !== null ? maxLng: 150
-      ]
-    },
-    lat: {
-      [Op.between]: [
-        minLat !== null ? minLat: -150,
-        maxLat !== null ? maxLat: 150
-      ]
-    },
-    price: {
-      [Op.between]: [
-        minPrice !== null ? minPrice: 0,
-        maxPrice !== null ? maxPrice: 1001
-      ]
-    }
+  let limit = size;
+  let offset = (page - 1) * size;
+  let where = {}
+
+  let query = {
+    limit,
+    offset,
+    where
   };
 
-  const spots = await Spot.findAll(query);
+if (minLng !== undefined || maxLng !== undefined) {
+  where.lng = {
+    [Op.between]: [
+      minLng !== undefined ? minLng : -180,
+      maxLng !== undefined ? maxLng : 180
+    ]
+  };
+}
+
+if (minLat !== undefined || maxLat !== undefined) {
+  where.lat = {
+    [Op.between]: [
+      minLat !== undefined ? minLat : -90,
+      maxLat !== undefined ? maxLat : 90
+    ]
+  };
+}
+
+if (minPrice !== undefined || maxPrice !== undefined) {
+  where.price = {
+    [Op.between]: [
+      minPrice !== undefined ? minPrice : 0,
+      maxPrice !== undefined ? maxPrice : 1001
+    ]
+  };
+}
+// console.log(query)
+
+  let spots = await Spot.findAll(query);
 
   for (let spot of spots) {
     previewImage = await SpotImage.findOne({
@@ -110,6 +127,9 @@ router.get("/", async (req, res) => {
     });
     if (previewImage) {
       spot.dataValues.previewImage = previewImage.dataValues.url;
+    }
+    if (!previewImage){
+      spot.dataValues.previewImage = null
     }
 
     const reviews = await Review.findAll({
@@ -131,13 +151,13 @@ router.get("/", async (req, res) => {
 
   res.json({
     Spots: spots,
-    page: query.offset / query.limit * 1,
-    size: query.limit
+    page: page,
+    size: size
   });
 });
 
 //Get all Spots of Current User
-router.get("/current", async (req, res) => {
+router.get("/current", requireAuth, async (req, res) => {
   const { user } = req;
 
   const spots = await Spot.findAll({
