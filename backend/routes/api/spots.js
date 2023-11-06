@@ -117,6 +117,12 @@ if (minPrice !== undefined || maxPrice !== undefined) {
   let spots = await Spot.findAll(query);
 
   for (let spot of spots) {
+
+    spot.dataValues.lat = parseFloat(spot.dataValues.lat);
+    spot.dataValues.lng = parseFloat(spot.dataValues.lng);
+    spot.dataValues.price = parseFloat(spot.dataValues.price);
+
+
     previewImage = await SpotImage.findOne({
       where: {
         spotId: spot.id,
@@ -166,6 +172,11 @@ router.get("/current", requireAuth, async (req, res) => {
   });
 
   for (let spot of spots) {
+
+    spot.dataValues.lat = parseFloat(spot.dataValues.lat);
+    spot.dataValues.lng = parseFloat(spot.dataValues.lng);
+    spot.dataValues.price = parseFloat(spot.dataValues.price);
+
     let previewImage = await SpotImage.findOne({
       where: {
         spotId: spot.id,
