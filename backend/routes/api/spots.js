@@ -20,8 +20,8 @@ router.post("/", requireAuth, async (req, res) => {
   if (!city) errors.city = "City is required";
   if (!state) errors.state = "State is required";
   if (!country) errors.country = "Country is required";
-  if (!lat || typeof lat !== "number") errors.lat = "Latitude is not valid";
-  if (!lng || typeof lng !== "number") errors.lng = "Longitude is not valid";
+  if (!lat || typeof lat !== "number" || lat > 150 || lat < - 150) errors.lat = "Latitude is not valid";
+  if (!lng || typeof lng !== "number" || lng > 150 || lng  < - 150) errors.lng = "Longitude is not valid";
   if (!name || name.length > 50)
     errors.name = "Name must be less than 50 characters";
   if (!description) errors.description = "Description is required";
@@ -193,7 +193,7 @@ router.get("/current", requireAuth, async (req, res) => {
     spot.dataValues.numReviews = reviews.length;
   }
 
-  res.json(spots);
+  res.json({Spots: spots});
 });
 
 //Get Spot details from id
