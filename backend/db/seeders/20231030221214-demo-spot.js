@@ -29,7 +29,7 @@ module.exports = {
       lng:35.95,
       name: 'Cozy Place',
       description: 'Small apartment in city',
-      price: 123.00
+      price: 99.00
     },
     {
       ownerId: 2,
