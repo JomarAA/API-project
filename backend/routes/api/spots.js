@@ -113,7 +113,6 @@ if (minPrice !== undefined || maxPrice !== undefined) {
     ]
   };
 }
-// console.log(query)
 
   let spots = await Spot.findAll(query);
 
