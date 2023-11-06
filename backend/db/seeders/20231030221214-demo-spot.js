@@ -73,8 +73,8 @@ module.exports = {
       city: 'Los Angeles',
       state: 'California',
       country:'Unites States of America',
-      lat: 37.91,
-      lng: 101.78,
+      lat: 35.91,
+      lng: 35.78,
       name: 'Guest House',
       description: 'Renovated Guest House in the Valley',
       price: 211.17

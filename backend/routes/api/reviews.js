@@ -124,7 +124,6 @@ router.put('/:reviewId', requireAuth, async(req, res) => {
 
     const thisReview = await Review.findOne({
       where: {
-        userId: req.user.dataValues.id,
         id: reviewId
       }
      })
