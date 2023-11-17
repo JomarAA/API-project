@@ -1,6 +1,6 @@
 <!--!!START SILENT -->
 
-# Mod-4-Project
+# Flair BnB
 
 <!--!!END -->
 <!--!!ADD -->
