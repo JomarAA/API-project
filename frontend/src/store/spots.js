@@ -12,8 +12,8 @@ const getSpots = (spots) => {
 
 //thunk action creator
 export const getAllSpots = () => async (dispatch) => {
-  const res = await csrfFetch("/api/users");
-  console.log(res);
+  const res = await csrfFetch("/api/spots");
+//   console.log(res);
 
   if (res.ok) {
     const data = await res.json();
@@ -28,14 +28,20 @@ const initialState = {};
 //reducer
 
 const spotsReducer = (state = initialState, action) => {
+
   switch (action.type) {
-    case GET_SPOTS:
+    case GET_SPOTS: {
+
       const newState = { ...state };
       const spots = {};
       action.spots.forEach((spot) => {
         spots[spot.id] = spot;
       });
-      return (newState.spots = spots);
+
+      newState.spots = spots
+      return newState
+    }
+    default: return state;
   }
 };
 
