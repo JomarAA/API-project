@@ -1,0 +1,23 @@
+.spot-container{
+    display: grid;
+    grid-template-columns: repeat(4, 1);
+}
+
+#spot-img {
+    width: 100%;
+    max-width: 250px;
+    height: 200px;
+    border-radius: 10px;
+}
+
+#one-spot {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+#display-components {
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+}

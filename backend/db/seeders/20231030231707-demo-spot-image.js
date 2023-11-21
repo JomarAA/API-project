@@ -23,27 +23,28 @@ module.exports = {
    await SpotImage.bulkCreate([
     {
       spotId: 1,
-      url: '../images/download (4).jpeg',
+      url: 'https://news.airbnb.com/wp-content/uploads/sites/4/2022/09/Newsroom-About.jpg?w=2048',
       preview: true
     },
     {
       spotId: 2,
-      url: '../images/download (5).jpeg',
+      url: 'https://i0.wp.com/www.tripstodiscover.com/wp-content/uploads/2022/03/Navarro-Guest-House.jpg?resize=784%2C521',
       preview: true
     },
     {
       spotId: 3,
-      url: '../images/images (1).jpeg',
+      url: 'https://www.reviewjournal.com/wp-content/uploads/2016/06/web1_airbnblasvegas_6598677.jpg?w=640',
       preview: true
     },
     {
       spotId: 4,
-      url: '../images/images (2).jpeg',
-      preview: false
+      url: 'https://a0.muscache.com/im/pictures/miso/Hosting-18328540/original/f0527561-b693-4b41-afde-a98f001a268a.jpeg?im_w=720',
+      preview: true
     },
     {
       spotId: 5,
-      url: '../images/images.jpeg'
+      url: 'https://vtrips.com/image/webp/fit/735/468/85/https%3A%2F%2Ftrack-pm.s3.amazonaws.com%2Fvrp%2Fimage%2F9c1094aa-f42d-4360-ab03-0341a2ab7706',
+      preview:true
     }
    ])
   },

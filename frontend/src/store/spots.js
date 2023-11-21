@@ -1,8 +1,8 @@
 import { csrfFetch } from "./csrf";
 
 //const to avoid debugging typos
-const GET_SPOTS = "spots/getSpots";
-const GET_SPOT_DETAILS = '/spots/getSpotDetails';
+const GET_SPOTS = "spots/GET_SPOTS";
+const GET_SPOT_DETAILS = '/spots/GET_SPOT_DETAILS';
 
 const getSpots = (spots) => {
   return {
@@ -23,40 +23,23 @@ export const getSpot = (id) => async(dispatch) => {
     const res = await csrfFetch(`/api/spots/${id}`)
 
     if (res.ok) {
-        const data = await res.json();
-        dispatch(getSpotDetails)
+        const spot = await res.json();
+        dispatch(getSpotDetails(spot))
     }
     return res;
 }
 
-export const getAllSpots = () => async (dispatch) => {
+export const allSpotsThunktion = () => async (dispatch) => {
   const res = await csrfFetch("/api/spots");
-//   console.log(res);
 
   if (res.ok) {
-    const { Spots } = await res.json();
-    const spotsById = Spots.reduce((acc, spot) => {
-      acc[spot.id] = spot;
-      return acc;
-    }, {});
+    let spots  = await res.json();
+    spots = spots.Spots
     // console.log('SPOTS:   ',Spots)
-    dispatch(getSpots(spotsById));
+    dispatch(getSpots(spots));
+    return spots;
   }
-  return res;
 };
-
-// export const getAllSpots = () => async (dispatch) => {
-//     const res = await csrfFetch("/api/spots");
-//   //   console.log(res);
-
-//     if (res.ok) {
-//       const data = await res.json();
-//       console.log('DATA:   ',data)
-//       dispatch(getSpots(data.Spots));
-//     }
-//     return res;
-//   };
-
 
 //state object
 const initialState = {};
@@ -64,12 +47,12 @@ const initialState = {};
 //reducer
 
 const spotsReducer = (state = initialState, action) => {
+
+    let allSpots = {};
     switch (action.type) {
       case GET_SPOTS:
-        return {
-          ...state,
-          spots: action.spots
-        };
+        action.spots.forEach((spot) => (allSpots[spot.id] = spot))
+        return {allSpots: {...allSpots}}
       case GET_SPOT_DETAILS:
         return {
             ...state, [action.spot.id]: action.spot

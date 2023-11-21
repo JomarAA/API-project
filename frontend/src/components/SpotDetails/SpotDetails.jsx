@@ -1,6 +1,6 @@
 import './SpotDetails.css'
 import { useEffect } from "react";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import {getSpot} from '../../store/spots'
 import { useParams } from 'react-router-dom';
 
@@ -15,7 +15,7 @@ function SpotDetails() {
         }
     }, [dispatch, id])
 
-    const spot = Object.values(useSelector((state) => state.spots[id]))
+    // const spot = Object.values(useSelector((state) => state.spots[id]))
 
     // console.log('%c   LOOK HERE', 'color: blue; font-size: 18px', spot)
 
