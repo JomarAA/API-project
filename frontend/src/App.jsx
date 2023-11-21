@@ -1,11 +1,11 @@
 // frontend/src/App.jsx
-
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import Navigation from './components/Navigation/Navigation';
 import * as sessionActions from './store/session';
-import Spots from './components/Spots/Spots'
+import { Spots} from './components/Spots';
+import { SpotDetails } from './components/SpotDetails';
 
 function Layout() {
   const dispatch = useDispatch();
@@ -35,6 +35,10 @@ const router = createBrowserRouter([
         element: <Spots/>
       }
     ]
+  },
+  {
+    path: '/spots/:id',
+    element: <SpotDetails/>
   }
 ]);
 
