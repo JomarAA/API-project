@@ -1,0 +1,16 @@
+SPOTS
+
+spots redux variables
+
+const to avoid debugging
+
+(getallspots) - getSpots/ GET_SPOTS
+
+(getSpotById) - getSpotDetails/GET_SPOT_DETAILS
+
+
+thunktions
+
+(getSpotById) - getSpot
+
+(getAllSpots) - allSpotsThunktion

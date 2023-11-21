@@ -33,13 +33,17 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Spots/>
+      },
+      {
+        path: '/spots/:spotId',
+        element: <SpotDetails/>
       }
     ]
-  },
-  {
-    path: '/spots/:id',
-    element: <SpotDetails/>
   }
+  // {
+  //   path: '/spots/:id',
+  //   element: <SpotDetails/>
+  // }
 ]);
 
 function App() {

@@ -27,6 +27,26 @@ module.exports = {
       preview: true
     },
     {
+      spotId: 1,
+      url: 'https://news.airbnb.com/wp-content/uploads/sites/4/2022/09/Newsroom-About.jpg?w=2048',
+      preview: true
+    },
+    {
+      spotId: 1,
+      url: 'https://news.airbnb.com/wp-content/uploads/sites/4/2022/09/Newsroom-About.jpg?w=2048',
+      preview: true
+    },
+    {
+      spotId: 1,
+      url: 'https://news.airbnb.com/wp-content/uploads/sites/4/2022/09/Newsroom-About.jpg?w=2048',
+      preview: true
+    },
+    {
+      spotId: 1,
+      url: 'https://news.airbnb.com/wp-content/uploads/sites/4/2022/09/Newsroom-About.jpg?w=2048',
+      preview: true
+    },
+    {
       spotId: 2,
       url: 'https://i0.wp.com/www.tripstodiscover.com/wp-content/uploads/2022/03/Navarro-Guest-House.jpg?resize=784%2C521',
       preview: true

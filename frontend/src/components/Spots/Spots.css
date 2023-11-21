@@ -1,6 +1,6 @@
-.spot-container{
+.spots-container{
     display: grid;
-    grid-template-columns: repeat(4, 1);
+    grid-template-columns: repeat(4, 1fr);
 }
 
 #spot-img {
@@ -10,14 +10,6 @@
     border-radius: 10px;
 }
 
-#one-spot {
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-}
-
-#display-components {
-    display: flex;
-    flex-direction: column;
-    width: 320px;
+.display-text {
+    visibility: hidden;
 }

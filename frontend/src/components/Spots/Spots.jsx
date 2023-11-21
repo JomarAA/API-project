@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { allSpotsThunktion } from "../../store/spots";
 import { useDispatch, useSelector } from "react-redux";
-// import { NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import './Spots.css'
 
 const Spots = () => {
   const dispatch = useDispatch();
   const spots = useSelector((state) => state.spots)
-  const getAllSpots = spots.allSpots ? Object.values(spots.allSpots): [];
+  const getAllSpots = spots.allSpots ? Object.values(spots.allSpots):[]
 
   useEffect(() => {
     dispatch(allSpotsThunktion());
@@ -20,6 +20,7 @@ const Spots = () => {
     <>
     <div className='spots-container'>
     {getAllSpots.map((spot) => (
+        <NavLink to={`/spots/${spot.id}`} key={spot.id}>
         <div className='one-spot' key={spot.id}>
         <div className='display-components'>
           <img id='spot-img' src={spot.previewImage} alt='Spot preview' />
@@ -50,6 +51,7 @@ const Spots = () => {
           </div>
         </div>
       </div>
+    </NavLink>
     ))}
    </div>
     </>
