@@ -1,10 +1,15 @@
+body {
+    background-color: antiquewhite;
+}
+
 .one-spot-container {
     padding-left: 10px;
     padding-right: 10px;
 }
 
 .spot-images-container {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 10px;
     padding-bottom: 10px;
 }
@@ -16,33 +21,37 @@
 }
 
 #primary-image {
-    max-width: 530px;
-    width: 530px;
-    height: 320px;
-    max-height: 330px;
+    /* max-width: 530px; */
+    width: 100%;
+    height: 100%;
+    /* max-height: 330px; */
 }
 
 .secondary-image {
-    max-width: 220px;
-    width: 220px;
-    height: 155px;
-    max-height: 170px;
+    /* max-width: 220px; */
+    width: 100%;
+    height: 100%;
+    /* max-height: 170px; */
 }
 
 .spot-details-container{
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    padding-bottom: 10px;
+    padding-right: 10px;
 }
 
 #reserve-square {
-    border: 1px solid black;
-    width: 300px;
+    border: 2px solid black;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
     margin: 10px;
     padding-top: 15px;
+    border-radius: 5%;
+    height: 50%;
 }
 
 #reserve-info {

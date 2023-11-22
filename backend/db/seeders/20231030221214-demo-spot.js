@@ -28,7 +28,7 @@ module.exports = {
       lat: 37.35,
       lng:35.95,
       name: 'Cozy Place',
-      description: 'Small apartment in city',
+      description: 'Welcome to Colours by Battistella! Spectacular condo located in the prestigious neighborhood of Beltline, Calgary.This amazing 921 sqft condo (2 Bed+2 Bath) is in a great location just walking distance to shops, restaurants, pubs, parks, cafes, public transportation, 17th Avenue, Stampede grounds, The Saddledome, and its close proximity to the core. With two walls of ceiling to floor windows, you will see spectacular unobstructed downtown views. Relax and enjoy the amazing panoramic views.',
       price: 99.00
     },
     {
@@ -76,7 +76,7 @@ module.exports = {
       lat: 35.91,
       lng: 35.78,
       name: 'Guest House',
-      description: 'Renovated Guest House in the Valley',
+      description: 'This rustic yet luxurious cabin is the perfect place to unplug. Walk through the woods, relax by a fire, and enjoy the food and wine of the Russian River Valley. 10 minutes from the beach. Minutes from Occidental, Graton, Forestville, and Guerneville. House has a full bathroom, bedroom downstairs with a queen bed and one upstairs with two twin beds. 5 acres in the redwoods, trampoline, fire pit area, high-speed Internet.',
       price: 211.17
     }
    ])

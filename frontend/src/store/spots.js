@@ -3,6 +3,14 @@ import { csrfFetch } from "./csrf";
 //const to avoid debugging typos
 const GET_SPOTS = "spots/GET_SPOTS";
 const GET_SPOT_DETAILS = '/spots/GET_SPOT_DETAILS';
+const CREATE_SPOT = '/spots/CREATE_SPOT';
+
+const createSpot = (spot) => {
+  return {
+    type: CREATE_SPOT,
+    spot
+  }
+}
 
 const getSpots = (spots) => {
   return {
@@ -19,6 +27,20 @@ const getSpotDetails = (spot) => {
 }
 
 // thunk action creator
+
+export const createNewSpot = (spot) => async (dispatch) => {
+    const res = await csrfFetch(`/api/spots`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(spot)
+    })
+    if (res.ok) {
+      const newSpot = await res.json();
+      dispatch(createSpot(newSpot))
+    }
+    return res
+}
+
 export const getSpot = (spotId) => async(dispatch) => {
     const res = await csrfFetch(`/api/spots/${spotId}`)
 
@@ -59,6 +81,8 @@ const spotsReducer = (state = initialState, action) => {
             oneSpot:{...state.spot}
         }
         return {...state,oneSpot:{...action.spot}}
+      case CREATE_SPOT:
+        return {...state, [action.spot.id]: action.spot}
       default:
         return state;
     }

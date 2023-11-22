@@ -23,27 +23,27 @@ module.exports = {
    await SpotImage.bulkCreate([
     {
       spotId: 1,
-      url: 'https://news.airbnb.com/wp-content/uploads/sites/4/2022/09/Newsroom-About.jpg?w=2048',
+      url: 'https://a0.muscache.com/im/pictures/miso/Hosting-855265289472667062/original/99f4d83b-7de8-467a-be43-4a5ddd184b24.jpeg?im_w=1200',
       preview: true
     },
     {
       spotId: 1,
-      url: 'https://news.airbnb.com/wp-content/uploads/sites/4/2022/09/Newsroom-About.jpg?w=2048',
+      url: 'https://a0.muscache.com/im/pictures/miso/Hosting-855265289472667062/original/1a2cd065-f0f7-475b-8f6e-2edafe503cc2.jpeg?im_w=720',
       preview: true
     },
     {
       spotId: 1,
-      url: 'https://news.airbnb.com/wp-content/uploads/sites/4/2022/09/Newsroom-About.jpg?w=2048',
+      url: 'https://a0.muscache.com/im/pictures/miso/Hosting-855265289472667062/original/e6bfdcec-ec38-41a8-ba08-59254454d877.jpeg?im_w=720',
       preview: true
     },
     {
       spotId: 1,
-      url: 'https://news.airbnb.com/wp-content/uploads/sites/4/2022/09/Newsroom-About.jpg?w=2048',
+      url: 'https://a0.muscache.com/im/pictures/miso/Hosting-855265289472667062/original/2cddcc8e-0a52-40ea-9d40-8a30ed11ed92.jpeg?im_w=720',
       preview: true
     },
     {
       spotId: 1,
-      url: 'https://news.airbnb.com/wp-content/uploads/sites/4/2022/09/Newsroom-About.jpg?w=2048',
+      url: 'https://a0.muscache.com/im/pictures/miso/Hosting-855265289472667062/original/662181dc-0a23-42c6-8792-b45c6c764610.jpeg?im_w=720',
       preview: true
     },
     {

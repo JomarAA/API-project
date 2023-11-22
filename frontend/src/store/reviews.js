@@ -6,7 +6,8 @@ const GET_REVIEWS = 'review/GET_REVIEWS'
 
 const getAllReviews = (reviews) => {
     return {
-        type: GET_REVIEWS
+        type: GET_REVIEWS,
+        reviews
     }
 }
 
@@ -40,3 +41,5 @@ const reviewsReducer = (state= initialState, action) => {
             return state
     }
 }
+
+export default reviewsReducer;

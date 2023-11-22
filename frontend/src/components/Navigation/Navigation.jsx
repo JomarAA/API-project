@@ -12,11 +12,11 @@ function Navigation({ isLoaded }) {
     <>
     <ul>
       <li>
-        <NavLink exact='true' to="/">Home</NavLink>
+        <NavLink id='icon' exact='true' to="/">Home</NavLink>
       </li>
       {isLoaded && (
         <li>
-          <ProfileButton user={sessionUser} />
+          <ProfileButton id='profile' user={sessionUser} />
         </li>
       )}
     </ul>
