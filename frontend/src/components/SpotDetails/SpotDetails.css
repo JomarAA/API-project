@@ -50,7 +50,7 @@ body {
     align-items: center;
     margin: 10px;
     padding-top: 15px;
-    border-radius: 5%;
+    border-radius: 7%;
     height: 50%;
 }
 
@@ -62,9 +62,37 @@ body {
 
 .rating {
     display: flex;
-    gap: 5px
+    gap: 5px;
+    padding-bottom: 5px;
 }
 
 #reserve-button {
     width: 80%;
+}
+
+.review-list {
+    display: grid;
+    grid-template-rows: repeat(1fr);
+}
+
+/* .review-item { */
+    /* border: 1px solid red; */
+    /* padding: 10px; */
+    /* margin-bottom: 10px; */
+    /* padding-bottom: 5px; */
+/* } */
+
+.review-user {
+    /* border: 1px solid blue; */
+    margin-bottom: 5px;
+}
+
+.review-date {
+    /* border: 1px solid green; */
+    margin-bottom: 5px;
+}
+
+.review-text {
+    /* margin-bottom: 5px; */
+    text-decoration: none;
 }

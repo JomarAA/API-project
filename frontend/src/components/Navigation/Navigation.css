@@ -2,8 +2,45 @@
     display: none;
   }
 
-  ul {
+  .navigation-container {
     display: flex;
     justify-content: space-between;
-    margin-right: 15px;
+    padding-left: 10px;
+    padding-top: 8px;
+    padding-right: 20px;
+    width: 990px;
+  }
+
+  .home-link {
+    gap: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .home-icon {
+    font-size: 30px;
+  }
+
+  .home-text {
+    font-size: 20px;
+    margin-right: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .create-spot-option {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 17px;
+  }
+
+  .create-spot-option a,
+  .home-icon a,
+  .home-text a {
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .user-actions {
+    display: flex;
+    gap: 15px;
   }

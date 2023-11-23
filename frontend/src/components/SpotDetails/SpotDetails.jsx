@@ -92,8 +92,12 @@ const SpotDetails = () => {
             <div className="review-list">
             {reviewsArray.map((review) => (
                 <div key={review.id} className="review-item">
-                    <h3 className="review-user">{review.User.firstName} </h3>
-                    <h4 className="review-date">{review.createdAt}</h4>
+                    <b className="review-user">{review.User.firstName} </b>
+                    <p className="review-date">
+                        {new Date(review.createdAt).toLocaleDateString(undefined, {
+                            month:'long',
+                            year:'numeric',
+                        })}</p>
                     <p className="review-text">{review.review}</p>
                 </div>
             ))}

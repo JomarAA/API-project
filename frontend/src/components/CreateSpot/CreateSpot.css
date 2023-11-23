@@ -1,0 +1,10 @@
+.create-spot-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.create-spot-form {
+    width: 50%;
+}

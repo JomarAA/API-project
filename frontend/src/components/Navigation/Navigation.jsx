@@ -10,18 +10,34 @@ function Navigation({ isLoaded }) {
 
   return (
     <>
-    <ul>
-      <li>
-        <NavLink id='icon' exact='true' to="/">Home</NavLink>
-      </li>
-      {isLoaded && (
-        <li>
-          <ProfileButton id='profile' user={sessionUser} />
-        </li>
-      )}
-    </ul>
+    <nav className="navigation-container">
+      <div className="home-link">
+        <NavLink exact='true' to="/">
+          <div className='home-icon'>
+        <i className="fab fa-airbnb"></i>
+          </div>
+        </NavLink>
+    <div className='home-text'>
+        <NavLink exact='true' to="/">
+        FlairBnB
+        </NavLink>
+    </div>
+      </div>
+      <div className='user-actions'>
+    <div className='create-spot-option'>
+      <NavLink exact='true' to='/spots/new'>
+        Create a New Spot
+      </NavLink>
+    </div>
+      <div className="profile-link">
+        {isLoaded && (
+          <ProfileButton user={sessionUser} />
+          )}
+      </div>
+          </div>
+    </nav>
     <hr></hr>
-      </>
+    </>
   );
 }
 
