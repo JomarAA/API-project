@@ -1,10 +1,58 @@
-.create-spot-page {
+.create-spot-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .create-spot-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .create-spot-form .form-section {
+    margin-bottom: 20px;
+  }
+
+  .label-and-error {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    margin-bottom: 5px;
+    gap: 3px;
+  }
 
-}
+  .label-and-error label {
+    font-weight: bold;
+  }
 
-.create-spot-form {
-    width: 50%;
-}
+  .label-and-error .error {
+    color: red;
+    font-size: 0.8em;
+  }
+
+  .create-spot-form input,
+  .create-spot-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+
+  .create-spot-button {
+    width: 100%;
+    padding: 12px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  .create-spot-button:hover {
+    background-color: #0056b3;
+  }
+
+  #price {
+    width: 94%;
+  }

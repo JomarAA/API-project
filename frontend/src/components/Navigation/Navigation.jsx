@@ -26,7 +26,7 @@ function Navigation({ isLoaded }) {
       <div className='user-actions'>
     <div className='create-spot-option'>
       <NavLink exact='true' to='/spots/new'>
-        Create a New Spot
+        {sessionUser && <p>Create a New Spot</p>}
       </NavLink>
     </div>
       <div className="profile-link">

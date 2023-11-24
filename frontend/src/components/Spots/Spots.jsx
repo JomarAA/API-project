@@ -32,7 +32,7 @@ const Spots = () => {
               {spot.city}, {spot.state}
             </p>
             <p className="price">
-              ${spot.price}night
+              ${spot.price} night
             </p>
           </div>
           <div className="rating-info">

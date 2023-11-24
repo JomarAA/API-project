@@ -43,4 +43,9 @@
   .user-actions {
     display: flex;
     gap: 15px;
+    align-items: center;
+  }
+
+   #break{
+    width: 100%
   }

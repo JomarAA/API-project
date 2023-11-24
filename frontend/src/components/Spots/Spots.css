@@ -1,11 +1,15 @@
 body {
-    background-color: antiquewhite;
+    background-color: rgb(241, 236, 230);
 }
 
 .spots-container{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 5px
+    gap: 5px;
+}
+
+.one-spot {
+    width: 230px;
 }
 
 #spot-img {
@@ -17,4 +21,8 @@ body {
 
 .display-text {
     visibility: hidden;
+}
+
+#text {
+    text-decoration: none;
 }

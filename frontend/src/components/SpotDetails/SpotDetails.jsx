@@ -25,11 +25,15 @@ const SpotDetails = () => {
     return null;
   }
 
+  if (!reviews) {
+    return null;
+  }
+
   const images = spot.SpotImages.slice(1, 5);
 
-  const reviewsArray = Object.values(reviews)
+  const reviewsArray = Object.values(reviews);
 
-//   console.log("%c   LOOK HERE", "color: blue; font-size: 18px", reviewsArray);
+  //   console.log("%c   LOOK HERE", "color: blue; font-size: 18px", reviewsArray);
 
   return (
     <div className="one-spot-container">
@@ -88,23 +92,23 @@ const SpotDetails = () => {
             <i className="fa-solid fa-star"></i>
             {parseFloat(spot.avgRating).toFixed(1)}
             <div className="num-reviews">{spot.numReviews} reviews</div>
-                </div>
-            <div className="review-list">
+          </div>
+          <div className="review-list">
             {reviewsArray.map((review) => (
-                <div key={review.id} className="review-item">
-                    <b className="review-user">{review.User.firstName} </b>
-                    <p className="review-date">
-                        {new Date(review.createdAt).toLocaleDateString(undefined, {
-                            month:'long',
-                            year:'numeric',
-                        })}</p>
-                    <p className="review-text">{review.review}</p>
-                </div>
+              <div key={review.id} className="review-item">
+                <b className="review-user">{review.User.firstName} </b>
+                <p className="review-date">
+                  {new Date(review.createdAt).toLocaleDateString(undefined, {
+                    month: "long",
+                    year: "numeric",
+                  })}
+                </p>
+                <p className="review-text">{review.review}</p>
+              </div>
             ))}
-
+          </div>
         </div>
       </div>
-    </div>
     </div>
   );
 };
