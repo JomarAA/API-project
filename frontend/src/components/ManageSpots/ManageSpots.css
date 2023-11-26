@@ -1,0 +1,24 @@
+#user-spots-container{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+}
+
+.one-spot {
+    width: 230px;
+}
+
+#spot-img {
+    width: 100%;
+    max-width: 250px;
+    height: 200px;
+    border-radius: 10px;
+}
+
+.display-text {
+    visibility: hidden;
+}
+
+#text {
+    text-decoration: none;
+}

@@ -4,12 +4,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { getSpot } from "../../store/spots";
 import { useParams } from "react-router-dom";
 import { getSpotReviews } from "../../store/reviews";
+// import { useModal } from "../../context/Modal";
+// import ReviewFormModal from "../ReviewFormModal/ReviewFormModal";
+import SpotReviews from "./Reviews";
 
 const SpotDetails = () => {
   const { spotId } = useParams();
   const dispatch = useDispatch();
   const spot = useSelector((state) => state.spots.oneSpot);
   const reviews = useSelector((state) => state.reviews.spot);
+  // const user = useSelector((state) => state.session.user);
+  // const { setModalContent } = useModal();
+
+
 
   useEffect(() => {
     if (spotId) {
@@ -31,9 +38,16 @@ const SpotDetails = () => {
 
   const images = spot.SpotImages.slice(1, 5);
 
-  const reviewsArray = Object.values(reviews);
 
-  //   console.log("%c   LOOK HERE", "color: blue; font-size: 18px", reviewsArray);
+
+
+
+  // const handleWriteReviewClick = () => {
+  //   setModalContent(<ReviewFormModal spotId={spotId} closeModal={() => setModalContent(null)} />);
+  // };
+
+  // console.log("%c   LOOK HERE", "color: blue; font-size: 18px", userHasReviewed);
+  // console.log("%c   LOOK HERE", "color: red; font-size: 18px", reviewsArray);
 
   return (
     <div className="one-spot-container">
@@ -86,29 +100,7 @@ const SpotDetails = () => {
         </div>
       </div>
       <hr></hr>
-      <div className="reviews-container">
-        <div className="review-info">
-          <div className="rating">
-            <i className="fa-solid fa-star"></i>
-            {parseFloat(spot.avgRating).toFixed(1)}
-            <div className="num-reviews">{spot.numReviews} reviews</div>
-          </div>
-          <div className="review-list">
-            {reviewsArray.map((review) => (
-              <div key={review.id} className="review-item">
-                <b className="review-user">{review.User.firstName} </b>
-                <p className="review-date">
-                  {new Date(review.createdAt).toLocaleDateString(undefined, {
-                    month: "long",
-                    year: "numeric",
-                  })}
-                </p>
-                <p className="review-text">{review.review}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      <SpotReviews spotId={spotId} />
     </div>
   );
 };
