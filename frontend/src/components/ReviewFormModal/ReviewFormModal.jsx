@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { createNewReview, getSpotReviews } from "../../store/reviews";
-import * as sessionActions from '../../store/reviews'
+import { createNewReview } from "../../store/reviews";
 
 
 const ReviewFormModal = ({ spotId }) => {
@@ -33,7 +32,7 @@ const ReviewFormModal = ({ spotId }) => {
         }
         return stars;
     };
-    console.log("%c   LOOK HERE", "color: red; font-size: 18px", user);
+    // console.log("%c   LOOK HERE", "color: red; font-size: 18px", user);
 
 
     const handleSubmit = async (e) => {
@@ -44,12 +43,12 @@ const ReviewFormModal = ({ spotId }) => {
             stars: parseInt(rating),
             userId: user.id,
             spotId: spot.id,
-            // firstname: user.firstname
+            firstName: user.firstName
         }
-        const createdReview = await dispatch(createNewReview(spotId, newReview));
-        console.log("%c   LOOK HERE", "color: blue; font-size: 18px", createdReview);
+        const createdReview = await dispatch(createNewReview(spotId, newReview, user));
+        // console.log("%c   LOOK HERE", "color: blue; font-size: 18px", createdReview);
 
-        // if (!createdReview.firstName) return null
+
         closeModal()
     }
 

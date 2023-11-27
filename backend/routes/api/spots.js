@@ -360,7 +360,7 @@ router.post('/:spotId/reviews', requireAuth, async(req, res) => {
   const {spotId} = req.params
   const {review, stars} = req.body;
   const userId = req.user.id
-
+  const user = req.user
   const spot = await Spot.findByPk(spotId);
 
   if (spot === null) {

@@ -11,10 +11,18 @@ function ManageUserSpots() {
     const user = useSelector((state) => state.session.user);
     const spots = useSelector((state) => state.spots)
     const getAllSpots = spots.allSpots ? Object.values(spots.allSpots) : []
+    const sessionUser = useSelector(state => state.session.user);
+    const navigate = useNavigate();
 
     useEffect(() => {
         dispatch(allSpotsThunktion());
     }, [dispatch]);
+
+    useEffect(() => {
+        if (!user) {
+            navigate("/");
+        }
+    }, [user, navigate]);
 
     if (!spots) {
         return null
@@ -23,14 +31,19 @@ function ManageUserSpots() {
     // console.log('%c   LOOK HERE', 'color: red; font-size: 18px', user)
     // console.log('%c   LOOK HERE', 'color: blue; font-size: 18px', getAllSpots)
     const currentUserSpots = getAllSpots.filter((spot) => parseInt(spot.ownerId) === (parseInt(user.id)))
-    console.log('%c   LOOK HERE', 'color: green; font-size: 18px', currentUserSpots)
+    // console.log('%c   LOOK HERE', 'color: green; font-size: 18px', currentUserSpots)
 
 
     return (
         <div id='manage-spots-container'>
             <h1>Manage Your Spots</h1>
+            {sessionUser && (
+                <NavLink exact='true' to='/spots/new' className={'create-spot-button'}>
+                    Create a New Spot
+                </NavLink>
+            )}
             <div id='user-spots-container'>
-                {currentUserSpots.map((spot) => (  // Ensure 'spot' is used only within this map callback
+                {currentUserSpots.map((spot) => (
                     <NavLink to={`/spots/${spot.id}`} key={spot.id}>
                         <div className='one-spot' key={spot.id}>
                             <div className='display-components'>
@@ -56,10 +69,14 @@ function ManageUserSpots() {
                                         </div>
                                     ) : (
                                         <div className="review">
-                                            <b>New</b>
                                         </div>
                                     )}
                                 </div>
+                            </div>
+                            <div className='manage-spots-options'>
+                                <NavLink exact='true' to={`/spots/${spot.id}/edit`} className={'manage-spot-button'}>
+                                    Update
+                                </NavLink>
                             </div>
                         </div>
                     </NavLink>

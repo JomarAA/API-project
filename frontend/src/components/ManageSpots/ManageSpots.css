@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 5px;
+    margin-top: 30px;
 }
 
 .one-spot {
@@ -21,4 +22,22 @@
 
 #text {
     text-decoration: none;
+}
+
+.create-spot-button {
+    text-decoration: none;
+    background-color: gray;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+a .manage-spot-button {
+    text-decoration: none;
+    background-color: gray;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    color: black;
 }
