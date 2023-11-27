@@ -4,6 +4,7 @@ import { deleteSpotThunk } from "../../store/spots";
 import { useNavigate } from "react-router-dom";
 
 
+
 const DeleteSpotModal = ({ spotId }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate()
@@ -17,8 +18,8 @@ const DeleteSpotModal = ({ spotId }) => {
 
     const confirmDelete = async () => {
         await dispatch(deleteSpotThunk(spotId))
+        navigate('/spots/current')
         closeModal()
-        navigate()
 
     }
 

@@ -49,3 +49,23 @@
    #break{
     width: 100%
   }
+
+  .profile-button-container {
+    position: relative; /* This makes it the reference point for the absolutely positioned dropdown */
+  }
+
+  .profile-dropdown {
+    position: absolute;
+    top: 100%; /* Position the dropdown right below the button */
+    right: 0; /* Align the dropdown to the right of the button */
+    z-index: 1000; /* Ensure it's above other content */
+    background-color: white; /* Or any color you prefer */
+    border: 1px solid #ccc; /* Optional */
+    border-radius: 4px; /* Optional */
+    width: 150px; /* Or any width you prefer */
+  }
+
+  /* Style for list items, buttons, etc. inside the dropdown */
+  /* .profile-dropdown li, .profile-dropdown button { */
+    /* Your styles here */
+  /* } */

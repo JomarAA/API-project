@@ -139,11 +139,11 @@ function UpdateSpot() {
             // const images = [previewImg, img2, img3, img4, img5];
 
             // console.log("%c   LOOK HERE", "color: red; font-size: 18px", spot);
-            await dispatch(editSpot(spot, spotId))
+            const updatedSpot = await dispatch(editSpot(spot, spotId))
 
             // await dispatch(allSpotsThunktion())
 
-            // navigate(`/spots/${updatedSpot.id}`);
+            navigate(`/spots/${updatedSpot.id}`);
             // }
         }
 

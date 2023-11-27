@@ -9,21 +9,26 @@ import { SpotDetails } from "./components/SpotDetails";
 import CreateSpot from "./components/CreateSpot/CreateSpot";
 import ManageUserSpots from "./components/ManageSpots/ManageSpots";
 import UpdateSpot from "./components/CreateSpot/UpdateSpot";
+import { Modal, ModalProvider } from "./context/Modal";
 
 function Layout() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
 
+
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => {
-      setIsLoaded(true);
+      setIsLoaded(true)
     });
   }, [dispatch]);
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
-      {isLoaded && <Outlet />}
+      <ModalProvider>
+        <Navigation isLoaded={isLoaded} />
+        {isLoaded && <Outlet />}
+        <Modal />
+      </ModalProvider>
     </>
   );
 }

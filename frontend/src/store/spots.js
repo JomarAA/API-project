@@ -122,7 +122,7 @@ export const editSpot = (spot, spotId) => async (dispatch) => {
   const res = await csrfFetch(`/api/spots/${spotId}`, {
     method: "PUT",
     headers: {
-      "Content-type": "application/json"
+      "Content-Type": "application/json"
     },
     body: JSON.stringify(spot)
   })
@@ -141,22 +141,24 @@ const initialState = {
 };
 
 //reducer
+let updatedAllSpots
+let nextState
 
 const spotsReducer = (state = initialState, action) => {
-  console.log("%c   LOOK HERE", "color: blue; font-size: 18px", action);
+  // console.log("%c   LOOK HERE", "color: blue; font-size: 18px", state);
   switch (action.type) {
     case GET_SPOTS:
       return { ...state, allSpots: action.spots };
     case GET_SPOT_DETAILS:
       return { ...state, oneSpot: { ...action.spot } };
       case CREATE_SPOT:
-        let updatedAllSpots = { ...state.allSpots };
+         updatedAllSpots = { ...state.allSpots };
         updatedAllSpots[action.payload.id] = action.spot;
         return { ...state,allSpots:{...updatedAllSpots}};
     case UPDATE_SPOT:
       return {...state, oneSpot:{...state.oneSpot, ...action.spot}}
     case DELETE_SPOT:
-      const nextState= {...state,...state.allSpots}
+       nextState= {...state,...state.allSpots}
       delete nextState.allSpots[action.spotId];
       return nextState
     default:

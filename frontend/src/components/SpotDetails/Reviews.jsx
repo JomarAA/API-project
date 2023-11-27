@@ -3,6 +3,7 @@ import { getSpotReviews } from "../../store/reviews";
 import ReviewFormModal from "../ReviewFormModal/ReviewFormModal";
 import { useModal } from "../../context/Modal";
 import { useEffect } from "react";
+import DeleteReviewModal from "../DeleteReviewModal/DeleteReviewModal";
 
 
 const Reviews = ({ spotId }) => {
@@ -26,12 +27,25 @@ const Reviews = ({ spotId }) => {
 
     const userHasReviewed = reviewsArray.map((review) => review.userId).includes(user?.id)
 
-    // console.log("%c   LOOK HERE", "color: purple; font-size: 18px", reviewsArray);
+    console.log("%c   LOOK HERE", "color: purple; font-size: 18px", reviewsArray);
+
+    const reviewAvg = (reviewsArray) => {
+        let sum = 0
+        for (let review of reviewsArray) {
+            sum += review.stars
+        }
+        return sum / reviewsArray.length
+    }
+
+    const averageRating = reviewAvg(reviewsArray)
 
     const handleWriteReviewClick = () => {
         setModalContent(<ReviewFormModal spotId={spotId} closeModal={() => setModalContent(null)} />);
     };
 
+    const handleDeleteReviewClick = (reviewId) => {
+        setModalContent(<DeleteReviewModal reviewId={reviewId} />)
+    }
 
     return (
 
@@ -39,8 +53,10 @@ const Reviews = ({ spotId }) => {
             <div className="review-info">
                 <div className="rating">
                     <i className="fa-solid fa-star"></i>
-                    {parseFloat(spot.avgRating).toFixed(1)}
-                    <div className="num-reviews">{spot.numReviews} reviews</div>
+                    {parseFloat(averageRating).toFixed(1)}
+                    <div className="num-reviews">
+                        {reviewsArray.length} {reviewsArray.length === 1 ? 'review' : 'reviews'}
+                    </div>
                 </div>
                 {loggedInUser && !ownerCheck && !userHasReviewed && (
                     <button onClick={handleWriteReviewClick} id="review-button">
@@ -58,6 +74,11 @@ const Reviews = ({ spotId }) => {
                                 })}
                             </p>
                             <p className="review-text">{review.review}</p>
+                            {user?.id === review.userId && (
+                                <button onClick={() => handleDeleteReviewClick(review.id)} className="delete-review-button">
+                                    Delete Review
+                                </button>
+                            )}
                         </div>
                     ))}
                 </div>

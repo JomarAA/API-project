@@ -27,6 +27,17 @@ const deleteReview = (reviewId) => {
 }
 
 //thunktions
+
+export const deleteSpotReview = (reviewId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/reviews/${reviewId}`, {
+    method: "DELETE"
+  })
+
+  if (res.ok) {
+    dispatch(deleteReview(reviewId))
+  }
+}
+
 export const getSpotReviews = (spotId) => async (dispatch) => {
   const res = await csrfFetch(`/api/spots/${spotId}/reviews`);
 
@@ -65,19 +76,18 @@ const reviewsReducer = (state = initialState, action) => {
       reviews = action.reviews.Reviews;
       reviews.forEach((review) => (nextState.spot[review.id] = review));
       return nextState;
-    case CREATE_REVIEW:
-    //   nextState = {
-    //     ...state,
-    //     spot: { ...state.spot },
-    //     user: { ...state.user },
-    //   };
-    //   nextState.Spot[action.review.id] = action.review;
-      return {...nextState,
-      spot: {
-        ...nextState.spot,
-        [action.review.spotId]: action.review
-      }
-    };
+      case CREATE_REVIEW:
+        return {...nextState,
+          spot: {
+            ...nextState.spot,
+            [action.review.id]: action.review
+          }
+        };
+        case DELETE_REVIEW:
+          nextState = {...state}
+          // console.log("%c   LOOK HERE", "color: green; font-size: 18px", nextState.spot[action.reviewId]);
+      delete nextState.spot[action.reviewId]
+      return nextState
     default:
       return state;
   }

@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { createNewReview } from "../../store/reviews";
+import { createNewReview, getSpotReviews } from "../../store/reviews";
+import { useNavigate } from "react-router-dom";
 
 
 const ReviewFormModal = ({ spotId }) => {
@@ -10,6 +11,7 @@ const ReviewFormModal = ({ spotId }) => {
     const [reviewText, setReviewText] = useState('');
     const [rating, setRating] = useState(0)
     const user = useSelector((state) => state.session.user);
+    const navigate = useNavigate()
 
     const { closeModal } = useModal();
 
@@ -42,15 +44,22 @@ const ReviewFormModal = ({ spotId }) => {
             review: reviewText,
             stars: parseInt(rating),
             userId: user.id,
-            spotId: spot.id,
+            spotId: parseInt(spot.id),
             firstName: user.firstName
-        }
-        const createdReview = await dispatch(createNewReview(spotId, newReview, user));
-        // console.log("%c   LOOK HERE", "color: blue; font-size: 18px", createdReview);
+        };
 
+        dispatch(createNewReview(spotId, newReview, user))
+            .then(() => {
+                navigate(`/spots/${spotId}`); // Navigate after the review is created
+            })
+            .then(() => {
+                dispatch(getSpotReviews(spotId))
+            })
+            .finally(() => {
+                closeModal(); // Close the modal in either case
+            })
 
-        closeModal()
-    }
+    };
 
 
     return (

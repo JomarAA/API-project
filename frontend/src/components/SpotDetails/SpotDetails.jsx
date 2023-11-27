@@ -12,11 +12,21 @@ const SpotDetails = () => {
   const { spotId } = useParams();
   const dispatch = useDispatch();
   const spot = useSelector((state) => state.spots.oneSpot);
-  const reviews = useSelector((state) => state.reviews.spot);
+  const reviews = useSelector((state) => state.reviews.spot || []);
   // const user = useSelector((state) => state.session.user);
   // const { setModalContent } = useModal();
+  // console.log("%c   LOOK HERE", "color: red; font-size: 18px", reviews);
+  const reviewsArray = Object.values(reviews);
 
+  const reviewAvg = (reviewsArray) => {
+    let sum = 0
+    for (let review of reviewsArray) {
+      sum += review.stars
+    }
+    return sum / reviewsArray.length
+  }
 
+  const averageRating = reviewAvg(reviewsArray)
 
   useEffect(() => {
     if (spotId) {
@@ -83,8 +93,10 @@ const SpotDetails = () => {
             <div className="rating-info">
               <div className="rating">
                 <i className="fa-solid fa-star"></i>
-                {parseFloat(spot.avgRating).toFixed(1)}
-                <div className="num-reviews">{spot.numReviews}reviews</div>
+                {parseFloat(averageRating).toFixed(1)}
+                <div className="num-reviews">
+                  {Object.values(reviews).length} {Object.values(reviews).length === 1 ? 'review' : 'reviews'}
+                </div>
               </div>
             </div>
           </div>
