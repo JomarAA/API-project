@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf";
 //const to avoid debugging typos
 const GET_REVIEWS = "review/GET_REVIEWS";
 const CREATE_REVIEW = "review/CREATE_REVIEW";
+const DELETE_REVIEW = 'review/DELETE_REVIEW'
 
 const getAllReviews = (reviews) => {
   return {
@@ -17,6 +18,13 @@ const createReview = (review) => {
     review,
   };
 };
+
+const deleteReview = (reviewId) => {
+  return {
+    type: DELETE_REVIEW,
+    reviewId
+  }
+}
 
 //thunktions
 export const getSpotReviews = (spotId) => async (dispatch) => {

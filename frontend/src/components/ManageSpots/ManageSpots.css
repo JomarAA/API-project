@@ -31,13 +31,31 @@
     margin-bottom: 20px;
 }
 
-a .manage-spot-button {
+.manage-spot-button{
     text-decoration: none;
     background-color: gray;
     color: white;
+    height: 25px;
 }
 
 a {
     text-decoration: none;
     color: black;
+}
+
+.manage-spots-options {
+   display: flex;
+   gap: 15px;
+}
+
+#update-button-text{
+    text-decoration: none;
+    background-color: gray;
+    color: white;
+    height: 25px;
+}
+
+.update-spot-button{
+    padding: 35px;
+
 }

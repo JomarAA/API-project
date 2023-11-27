@@ -5,6 +5,7 @@ const GET_SPOTS = "spots/GET_SPOTS";
 const GET_SPOT_DETAILS = '/spots/GET_SPOT_DETAILS';
 const CREATE_SPOT = '/spots/CREATE_SPOT';
 const UPDATE_SPOT = 'spots/UPDATE_SPOT'
+const DELETE_SPOT = 'spots/DELETE_SPOT'
 
 const createSpot = (payload) => {
   return {
@@ -34,8 +35,24 @@ const updateSpot = (spot) => {
   }
 }
 
+const deleteSpot = (spotId) => {
+  return {
+    type: DELETE_SPOT,
+    spotId
+  }
+}
+
 
 // thunk action creator
+
+export const deleteSpotThunk = (spotId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/spots/${spotId}`, {
+    method:"DELETE",
+  })
+  if (res.ok) {
+    dispatch(deleteSpot(spotId))
+  }
+}
 
 export const getSpot = (spotId) => async (dispatch) => {
   const res = await csrfFetch(`/api/spots/${spotId}`)
@@ -109,10 +126,10 @@ export const editSpot = (spot, spotId) => async (dispatch) => {
     },
     body: JSON.stringify(spot)
   })
-  console.log("%c   LOOK HERE", "color: red; font-size: 18px", spot)
+  // console.log("%c   LOOK HERE", "color: red; font-size: 18px", spot)
   if (res.ok) {
     const updatedSpot = await res.json();
-    dispatch(updateSpot(updatedSpot));
+    dispatch(updateSpot(updatedSpot, spotId));
     return updatedSpot
   }
   return res
@@ -126,7 +143,7 @@ const initialState = {
 //reducer
 
 const spotsReducer = (state = initialState, action) => {
-  // console.log("%c   LOOK HERE", "color: blue; font-size: 18px", state);
+  console.log("%c   LOOK HERE", "color: blue; font-size: 18px", action);
   switch (action.type) {
     case GET_SPOTS:
       return { ...state, allSpots: action.spots };
@@ -138,6 +155,10 @@ const spotsReducer = (state = initialState, action) => {
         return { ...state,allSpots:{...updatedAllSpots}};
     case UPDATE_SPOT:
       return {...state, oneSpot:{...state.oneSpot, ...action.spot}}
+    case DELETE_SPOT:
+      const nextState= {...state,...state.allSpots}
+      delete nextState.allSpots[action.spotId];
+      return nextState
     default:
       return state;
   }

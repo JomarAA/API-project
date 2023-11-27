@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
 import './ManageSpots.css'
-
+// import { useModal } from "../../context/Modal";
+import DeleteSpotModal from './DeleteSpotModal.jsx'
 
 function ManageUserSpots() {
     const dispatch = useDispatch();
@@ -33,7 +34,6 @@ function ManageUserSpots() {
     const currentUserSpots = getAllSpots.filter((spot) => parseInt(spot.ownerId) === (parseInt(user.id)))
     // console.log('%c   LOOK HERE', 'color: green; font-size: 18px', currentUserSpots)
 
-
     return (
         <div id='manage-spots-container'>
             <h1>Manage Your Spots</h1>
@@ -44,8 +44,8 @@ function ManageUserSpots() {
             )}
             <div id='user-spots-container'>
                 {currentUserSpots.map((spot) => (
-                    <NavLink to={`/spots/${spot.id}`} key={spot.id}>
-                        <div className='one-spot' key={spot.id}>
+                    <div className='one-spot' key={spot.id}>
+                        <NavLink to={`/spots/${spot.id}`}>
                             <div className='display-components'>
                                 <img id='spot-img' src={spot.previewImage} alt='Spot preview' />
                                 <span className="display-text">{spot.name}</span>
@@ -73,16 +73,19 @@ function ManageUserSpots() {
                                     )}
                                 </div>
                             </div>
-                            <div className='manage-spots-options'>
-                                <NavLink exact='true' to={`/spots/${spot.id}/edit`} className={'manage-spot-button'}>
-                                    Update
-                                </NavLink>
-                            </div>
+                        </NavLink>
+                        <div className='manage-spots-options'>
+                            <button className='manage-spot-button' onClick={() => navigate(`/spots/${spot.id}/edit`)}>
+                                Update
+                            </button>
+                            <OpenModalButton
+                                buttonText='Delete'
+                                modalComponent={<DeleteSpotModal spotId={spot.id} />}
+                            />
                         </div>
-                    </NavLink>
+                    </div>
                 ))}
             </div>
-
         </div>
     )
 }

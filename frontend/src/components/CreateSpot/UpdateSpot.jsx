@@ -138,8 +138,8 @@ function UpdateSpot() {
             };
             // const images = [previewImg, img2, img3, img4, img5];
 
-            console.log("%c   LOOK HERE", "color: red; font-size: 18px", spot);
-            const updatedSpot = await dispatch(editSpot(spot, spotId))
+            // console.log("%c   LOOK HERE", "color: red; font-size: 18px", spot);
+            await dispatch(editSpot(spot, spotId))
 
             // await dispatch(allSpotsThunktion())
 
