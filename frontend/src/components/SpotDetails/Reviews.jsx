@@ -52,7 +52,6 @@ const Reviews = ({ spotId }) => {
         <div className="reviews-container" >
             <div className="review-info">
                 <div className="rating">
-                    <i className="fa-solid fa-star"></i>
                     {reviewsArray.length > 0 ? (
                         <>
                             <i className="fa-solid fa-star"></i>

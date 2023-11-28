@@ -92,7 +92,7 @@ const SpotDetails = () => {
             <div id="pricing"> ${spot.price} night</div>
             <div className="rating-info">
               <div className="rating">
-                <i className="fa-solid fa-star"></i>
+
                 {reviewsArray.length > 0 ? (
                   <>
                     <i className="fa-solid fa-star"></i>

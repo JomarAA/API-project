@@ -52,6 +52,7 @@
 
   .profile-button-container {
     position: relative;
+
   }
 
   #user-info-container {
@@ -60,6 +61,7 @@
     text-align: center;
     padding: 5px 0;
     font-family: Arial, Helvetica, sans-serif;
+    overflow-wrap: break-word;
   }
 
   button[type="logout"]{

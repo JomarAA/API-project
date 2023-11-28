@@ -1,12 +1,38 @@
 
 .spots-container{
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
     gap: 5px;
 }
 
 .one-spot {
-    width: 230px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.one-spot .spot-info {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+}
+
+.one-spot .city,
+.one-spot .price {
+    margin: 5px 0;
+}
+
+.spot-details {
+    font-size: medium;
+    width: 80%;
+}
+
+
+.one-spot .review {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
 }
 
 #spot-img {

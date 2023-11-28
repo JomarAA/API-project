@@ -44,7 +44,7 @@ function ProfileButton({ user }) {
         navigate(`/`);
       })
       .finally(() => {
-        closeModal(); // Close the modal in either case
+        closeModal();
       })
   };
 

@@ -8,3 +8,9 @@
     flex-direction: column;
     align-items: center;
   }
+
+  .errors {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 15px;
+  }

@@ -14,17 +14,16 @@ const Spots = () => {
   }, [dispatch]);
 
   // console.log('%c   LOOK HERE', 'color: green; font-size: 18px', spots)
-  console.log('%c   LOOK HERE OBJ 0', 'color: purple; font-size: 18px', spots)
+  // console.log('%c   LOOK HERE OBJ 0', 'color: purple; font-size: 18px', spots)
 
   return (
     <>
       <div className='spots-container'>
         {getAllSpots.map((spot) => (
           <NavLink to={`/spots/${spot.id}`} key={spot.id}>
-            <div className='one-spot' key={spot.id}>
+            <div className='one-spot' key={spot.id} title={spot.name}>
               <div className='display-components'>
                 <img id='spot-img' src={spot.previewImage} alt='Spot preview' />
-                <span className="display-text">{spot.name}</span>
               </div>
               <div className="spot-info">
                 <div className="spot-details">
