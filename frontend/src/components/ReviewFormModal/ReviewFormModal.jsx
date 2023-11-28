@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { createNewReview, getSpotReviews } from "../../store/reviews";
 import { useNavigate } from "react-router-dom";
+import './ReviewForm.css'
 
 
 const ReviewFormModal = ({ spotId }) => {
@@ -65,12 +66,12 @@ const ReviewFormModal = ({ spotId }) => {
     return (
         <div className="review-modal">
             <div className="review-modal-content">
-                <h2>Write a Review</h2>
+                <h2>How was your stay?</h2>
                 <form onSubmit={handleSubmit}>
                     <input
                         id='review-text-input'
                         rows="4"
-                        placeholder="Write your review here..."
+                        placeholder="Leave your review here..."
                         value={reviewText}
                         onChange={(e) => setReviewText(e.target.value)}
                     />
@@ -78,7 +79,7 @@ const ReviewFormModal = ({ spotId }) => {
                         {renderStars()}
                     </div>
 
-                    <button type="submit">Submit Review</button>
+                    <button type="submit" disabled={reviewText.length < 10 || rating === 0 || reviewText.trim().length === 0}>Submit Your Review</button>
                 </form>
             </div>
         </div>

@@ -41,11 +41,10 @@ function ManageUserSpots() {
             )}
             <div id='user-spots-container'>
                 {currentUserSpots.map((spot) => (
-                    <div className='one-spot' key={spot.id}>
+                    <div className='one-spot' key={spot.id} title={spot.name}>
                         <NavLink to={`/spots/${spot.id}`}>
                             <div className='display-components'>
                                 <img id='spot-img' src={spot.previewImage} alt='Spot preview' />
-                                <span className="display-text">{spot.name}</span>
                             </div>
                             <div className="spot-info">
                                 <div className="spot-details">
@@ -66,6 +65,7 @@ function ManageUserSpots() {
                                         </div>
                                     ) : (
                                         <div className="review">
+                                            <b>New</b>
                                         </div>
                                     )}
                                 </div>
@@ -77,6 +77,7 @@ function ManageUserSpots() {
                             </button>
                             <OpenModalButton
                                 buttonText='Delete'
+                                className='delete-button'
                                 modalComponent={<DeleteSpotModal spotId={spot.id} />}
                             />
                         </div>

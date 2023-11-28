@@ -69,22 +69,22 @@ function CreateSpot() {
     if (!name) {
       validationsObj.name = "Name is required";
     }
-    // if (description.length < 30) {
-    //   validationsObj.description = "Description needs minumum of 30 characters";
-    // }
+    if (description.length < 30) {
+      validationsObj.description = "Description needs minumum of 30 characters";
+    }
     if (!price) {
       validationsObj.price = "Price is required";
     }
     if (!previewImg) {
       validationsObj.previewImg = 'Preview image is required'
     }
+    if (!previewImg.endsWith('.jpg') && !previewImg.endsWith('.jpeg') && !previewImg.endsWith('.png')) {
+      validationsObj.previewImg = 'Image URL must end in a .png, .jpg, or .jpeg'
+    }
+
     setValidation(validationsObj);
 
   }, [city, state, country, address, description, name, price, lat, lng, previewImg])
-  // if (!previewImg.endsWith('.jpg') && !previewImg.endsWith('.jpeg') && !previewImg.endsWith('.png')) {
-  //   validationsObj.previewImg = 'Image URL must end in a .png, .jpg, or .jpeg'
-  //   errorsArray.push('Image URL must end in a .png, .jpg, or .jpeg')
-  // }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -203,6 +203,9 @@ function CreateSpot() {
             <div id="lat-input">
               <div className="label-and-error">
                 <label htmlFor="lat">Latitude</label>
+                {submittted && validations.lat && (
+                  <span className="error">{validations.lat}</span>
+                )}
               </div>
               <input
                 id="latitude"
@@ -216,6 +219,9 @@ function CreateSpot() {
             <div id="lng-input">
               <div className="label-and-error">
                 <label htmlFor="lng">Longitude</label>
+                {submittted && validations.lng && (
+                  <span className="error">{validations.lng}</span>
+                )}
               </div>
               <input
                 id="longitude"
@@ -233,7 +239,7 @@ function CreateSpot() {
           <p>
             Mention the best features of your space, any special amenities
             like fast wifi or parking, and what you love about the
-            neighborhood
+            neighborhood.
           </p>
           <div id="description-input">
             <input

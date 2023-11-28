@@ -23,7 +23,9 @@ const Reviews = ({ spotId }) => {
     const ownerCheck = user && user.id === spot.Owner.id
 
 
-    const reviewsArray = Object.values(reviews);
+    const unfilteredReviews = Object.values(reviews);
+
+    const reviewsArray = [...unfilteredReviews].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
     const userHasReviewed = reviewsArray.map((review) => review.userId).includes(user?.id)
 
@@ -48,20 +50,20 @@ const Reviews = ({ spotId }) => {
     }
 
     return (
-
-        <div className="reviews-container" >
+        <div className="reviews-container">
             <div className="review-info">
                 <div className="rating">
                     {reviewsArray.length > 0 ? (
                         <>
                             <i className="fa-solid fa-star"></i>
                             {parseFloat(averageRating).toFixed(1)}
+                            <span className="dot">&#183;</span>
                             <div className="num-reviews">
                                 {reviewsArray.length} {reviewsArray.length === 1 ? 'review' : 'reviews'}
                             </div>
                         </>
                     ) : (
-                        <div className="num-reviews">New</div>
+                        <div className="num-reviews"><i className="fa-solid fa-star"></i> New</div>
                     )}
                 </div>
                 {loggedInUser && !ownerCheck && !userHasReviewed && (
@@ -69,6 +71,12 @@ const Reviews = ({ spotId }) => {
                         Write a Review
                     </button>
                 )}
+            </div>
+            {reviewsArray.length === 0 && loggedInUser && !ownerCheck ? (
+                <div className="no-reviews-message">
+                    Be the first to post a review!
+                </div>
+            ) : (
                 <div className="review-list">
                     {reviewsArray.map((review) => (
                         <div key={review.id} className="review-item">
@@ -88,10 +96,9 @@ const Reviews = ({ spotId }) => {
                         </div>
                     ))}
                 </div>
-            </div>
+            )}
         </div>
-
-    )
-}
+    );
+};
 
 export default Reviews

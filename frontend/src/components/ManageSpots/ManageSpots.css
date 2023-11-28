@@ -7,6 +7,7 @@
 
 .one-spot {
     width: 230px;
+    margin-bottom: 8px;
 }
 
 #spot-img {
@@ -32,6 +33,13 @@
 }
 
 .manage-spot-button{
+    text-decoration: none;
+    background-color: gray;
+    color: white;
+    height: 25px;
+}
+
+.delete-button{
     text-decoration: none;
     background-color: gray;
     color: white;

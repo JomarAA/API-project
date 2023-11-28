@@ -4,6 +4,7 @@ import { deleteSpotReview } from "../../store/reviews";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { getSpotReviews } from "../../store/reviews";
+import './DeleteReview.css'
 
 const DeleteReviewModal = ({ reviewId }) => {
     const dispatch = useDispatch();

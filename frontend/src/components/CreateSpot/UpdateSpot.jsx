@@ -322,7 +322,7 @@ function UpdateSpot() {
 
 
                 <button type="submit" className="create-spot-button">
-                    Create Spot
+                    Update Your Spot
                 </button>
             </form>
         </div>
