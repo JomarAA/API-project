@@ -53,10 +53,17 @@ const Reviews = ({ spotId }) => {
             <div className="review-info">
                 <div className="rating">
                     <i className="fa-solid fa-star"></i>
-                    {parseFloat(averageRating).toFixed(1)}
-                    <div className="num-reviews">
-                        {reviewsArray.length} {reviewsArray.length === 1 ? 'review' : 'reviews'}
-                    </div>
+                    {reviewsArray.length > 0 ? (
+                        <>
+                            <i className="fa-solid fa-star"></i>
+                            {parseFloat(averageRating).toFixed(1)}
+                            <div className="num-reviews">
+                                {reviewsArray.length} {reviewsArray.length === 1 ? 'review' : 'reviews'}
+                            </div>
+                        </>
+                    ) : (
+                        <div className="num-reviews">New</div>
+                    )}
                 </div>
                 {loggedInUser && !ownerCheck && !userHasReviewed && (
                     <button onClick={handleWriteReviewClick} id="review-button">

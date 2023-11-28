@@ -5,16 +5,21 @@ import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal/LoginFormModal';
 import SignupFormModal from '../SignupFormModal/SignupFormModal';
 import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useModal } from '../../context/Modal';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
+  const navigate = useNavigate()
 
   const toggleMenu = (e) => {
     e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
     setShowMenu(!showMenu);
   };
+
+  const { closeModal } = useModal()
 
   useEffect(() => {
     if (!showMenu) return;
@@ -32,10 +37,15 @@ function ProfileButton({ user }) {
 
   const closeMenu = () => setShowMenu(false);
 
-  const logout = (e) => {
+  const logout = async (e) => {
     e.preventDefault();
-    dispatch(sessionActions.logout());
-    closeMenu();
+    dispatch(sessionActions.logout())
+      .then(() => {
+        navigate(`/`);
+      })
+      .finally(() => {
+        closeModal(); // Close the modal in either case
+      })
   };
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
@@ -48,7 +58,7 @@ function ProfileButton({ user }) {
       <div className={ulClassName} ref={ulRef}>
         {user ? (
           <div id='user-info-container'>
-            <div id='username'>Hello {user.username}</div>
+            <div id='username'>Hello, {user.username}</div>
             {/* <div id='name'>Hello, {user.firstName} {user.lastName}</div> */}
             <div id='user-email'>{user.email}</div>
             <hr></hr>
@@ -58,23 +68,24 @@ function ProfileButton({ user }) {
               </NavLink>
             </div>
             <hr></hr>
-            <div className='logout-button'>
-              <button onClick={logout}>Log Out</button>
-            </div>
+
+            <button type='logout' onClick={logout}>Log Out</button>
+
           </div>
         ) : (
-          <>
+          <div className='login-container'>
             <OpenModalMenuItem
               itemText="Log In"
               onItemClick={closeMenu}
               modalComponent={<LoginFormModal />}
+              className="login-item"
             />
             <OpenModalMenuItem
               itemText="Sign Up"
               onItemClick={closeMenu}
               modalComponent={<SignupFormModal />}
             />
-          </>
+          </div>
         )}
       </div>
     </div>

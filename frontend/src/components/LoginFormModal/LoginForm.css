@@ -1,0 +1,61 @@
+
+.login-form {
+    background: #ffffff;
+    padding: 20px;
+    width: 300px;
+    border-radius: 10px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  #errors {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 15px;
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    background-color: #f44336;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: 1px solid black;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  button[type="submit"]:hover {
+    background-color: #d32f2f;
+  }
+
+  #demo-user-btn {
+    width: 100%;
+    color: #333333;
+    background-color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  button[type="submit"]:disabled {
+    background-color: white;
+    color: #ccc;
+    cursor: not-allowed;
+  }

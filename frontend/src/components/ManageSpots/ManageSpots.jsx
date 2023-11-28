@@ -1,22 +1,22 @@
 import { useEffect } from "react";
-import { allSpotsThunktion } from "../../store/spots";
+import { getCurrentUserSpots } from "../../store/spots";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
 import './ManageSpots.css'
-// import { useModal } from "../../context/Modal";
 import DeleteSpotModal from './DeleteSpotModal.jsx'
 
 function ManageUserSpots() {
     const dispatch = useDispatch();
     const user = useSelector((state) => state.session.user);
-    const spots = useSelector((state) => state.spots)
-    const getAllSpots = spots.allSpots ? Object.values(spots.allSpots) : []
     const sessionUser = useSelector(state => state.session.user);
     const navigate = useNavigate();
+    const spots = useSelector((state) => state.spots)
+    const currentUserSpots = spots.currentUserSpots ? Object.values(spots.currentUserSpots) : []
+    // const getAllSpots = spots.allSpots ? Object.values(spots.allSpots) : []
 
     useEffect(() => {
-        dispatch(allSpotsThunktion());
+        dispatch(getCurrentUserSpots());
     }, [dispatch]);
 
     useEffect(() => {
@@ -25,13 +25,10 @@ function ManageUserSpots() {
         }
     }, [user, navigate]);
 
-    if (!spots) {
-        return null
-    }
 
     // console.log('%c   LOOK HERE', 'color: red; font-size: 18px', user)
-    // console.log('%c   LOOK HERE', 'color: blue; font-size: 18px', getAllSpots)
-    const currentUserSpots = getAllSpots.filter((spot) => parseInt(spot.ownerId) === (parseInt(user.id)))
+    // console.log('%c   LOOK HERE', 'color: blue; font-size: 18px', currentUserSpots)
+    // const currentUserSpots = getAllSpots.filter((spot) => parseInt(spot.ownerId) === (parseInt(user.id)))
     // console.log('%c   LOOK HERE', 'color: green; font-size: 18px', currentUserSpots)
 
     return (

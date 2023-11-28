@@ -10,10 +10,12 @@ import CreateSpot from "./components/CreateSpot/CreateSpot";
 import ManageUserSpots from "./components/ManageSpots/ManageSpots";
 import UpdateSpot from "./components/CreateSpot/UpdateSpot";
 import { Modal, ModalProvider } from "./context/Modal";
+import { Navigate } from "react-router-dom";
 
 function Layout() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+
 
 
   useEffect(() => {
@@ -41,6 +43,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Spots />,
+      },
+      {
+        path: "/spots",
+        element: <Navigate to="/" replace />,
       },
       {
         path: "/spots/:spotId",

@@ -6,6 +6,7 @@ const GET_SPOT_DETAILS = '/spots/GET_SPOT_DETAILS';
 const CREATE_SPOT = '/spots/CREATE_SPOT';
 const UPDATE_SPOT = 'spots/UPDATE_SPOT'
 const DELETE_SPOT = 'spots/DELETE_SPOT'
+const GET_USER_SPOTS = '/spots/GET_USER_SPOTS'
 
 const createSpot = (payload) => {
   return {
@@ -13,6 +14,14 @@ const createSpot = (payload) => {
     payload
   }
 }
+
+const getUserSpots = (spots) => {
+  return {
+    type: GET_USER_SPOTS,
+    spots,
+  };
+};
+
 
 const getSpots = (spots) => {
   return {
@@ -118,6 +127,19 @@ export const allSpotsThunktion = () => async (dispatch) => {
   return res
 };
 
+export const getCurrentUserSpots = () => async (dispatch) => {
+  const res = await csrfFetch('/api/spots/current')
+
+    if (res.ok) {
+      let spots = await res.json();
+      spots = spots.Spots
+    dispatch(getUserSpots(spots));
+    return spots;
+  }
+  return res;
+};
+
+
 export const editSpot = (spot, spotId) => async (dispatch) => {
   const res = await csrfFetch(`/api/spots/${spotId}`, {
     method: "PUT",
@@ -138,6 +160,7 @@ export const editSpot = (spot, spotId) => async (dispatch) => {
 const initialState = {
   allSpots: {},
   oneSpot: null,
+  currentUserSpots:{}
 };
 
 //reducer
@@ -145,7 +168,7 @@ let updatedAllSpots
 let nextState
 
 const spotsReducer = (state = initialState, action) => {
-  // console.log("%c   LOOK HERE", "color: blue; font-size: 18px", state);
+  // console.log("%c   LOOK HERE", "color: blue; font-size: 18px", action);
   switch (action.type) {
     case GET_SPOTS:
       return { ...state, allSpots: action.spots };
@@ -161,6 +184,8 @@ const spotsReducer = (state = initialState, action) => {
        nextState= {...state,...state.allSpots}
       delete nextState.allSpots[action.spotId];
       return nextState
+      case GET_USER_SPOTS:
+      return { ...state, currentUserSpots: action.spots };
     default:
       return state;
   }

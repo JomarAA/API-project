@@ -14,7 +14,7 @@ const Spots = () => {
   }, [dispatch]);
 
   // console.log('%c   LOOK HERE', 'color: green; font-size: 18px', spots)
-  //   console.log('%c   LOOK HERE OBJ 0', 'color: purple; font-size: 18px', getAllSpots)
+  console.log('%c   LOOK HERE OBJ 0', 'color: purple; font-size: 18px', spots)
 
   return (
     <>

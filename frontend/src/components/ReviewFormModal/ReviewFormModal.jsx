@@ -50,13 +50,13 @@ const ReviewFormModal = ({ spotId }) => {
 
         dispatch(createNewReview(spotId, newReview, user))
             .then(() => {
-                navigate(`/spots/${spotId}`); // Navigate after the review is created
+                navigate(`/spots/${spotId}`);
             })
             .then(() => {
                 dispatch(getSpotReviews(spotId))
             })
             .finally(() => {
-                closeModal(); // Close the modal in either case
+                closeModal();
             })
 
     };

@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { deleteSpotThunk } from "../../store/spots";
+import { deleteSpotThunk, getCurrentUserSpots } from "../../store/spots";
 import { useNavigate } from "react-router-dom";
 
 
@@ -18,8 +18,17 @@ const DeleteSpotModal = ({ spotId }) => {
 
     const confirmDelete = async () => {
         await dispatch(deleteSpotThunk(spotId))
-        navigate('/spots/current')
-        closeModal()
+            .then(() => {
+                navigate(`/spots/current`); // Navigate after the review is created
+            })
+            .then(() => {
+                dispatch(getCurrentUserSpots())
+            })
+            .finally(() => {
+                closeModal(); // Close the modal in either case
+            })
+
+
 
     }
 
